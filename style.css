@@ -1,8 +1,9 @@
 body {
-  background-color: #65aaba;
+  /*background-color: #3c4f6b;*/
+  background-color: #80b3ff;
 }
 .slide {
-  background-image:url('images/railsware-logo.gif');
+  /*background-image: url2('images/railsware-logo.gif');*/
   background-repeat:no-repeat;
   background-position:860px 10px;
 }
