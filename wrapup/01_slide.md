@@ -2,8 +2,7 @@
 
 # Thanks
 
-* [blog.railsware.com](http://blog.railsware.com)
-* [railsware.github.com](http://railsware.github.com)
-* [twitter.com/railsware](http://twitter.com/railsware)
-* [flickr.com/railsware](http://www.flickr.com/photos/railsware)
+* Blog: [blog.railsware.com](http://blog.railsware.com)
+* Follow us: [@railsware](http://twitter.com/railsware)
+* OSS activity: [railsware.github.com](http://railsware.github.com)
 * [github.com/ayanko](http://github.com/ayanko)
