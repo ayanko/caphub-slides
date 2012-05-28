@@ -3,17 +3,61 @@
 
 Multiple 'capistrano configuration' in one place.
 
+!SLIDE small
+# Concept
 
-!SLIDE 
-# Idea
+* segregate *application* and *deployment*
+* segregate *configurations* and *recipes*
+* no capistrano hacks
+* multi configuration support (similar to well-known multistage)
 
-We often use dead-simple mulistage extension
+!SLIDE smaller
+# multistage vs multiconfig
 
-    $ cap [STAGE] [RECIPE]
+<div class="two-column-container">
+  <pre class="sh_ruby sh_sourceCode two-column left">
+    # multistage (2-level)
 
-For example
+    config
+    ├── deploy.rb
+    └── deploy
+        ├── production.rb
+        └── ...
 
     $ cap production deploy
+
+    # deploy.rb + production.rb
+  </pre>
+
+  <pre class="sh_ruby sh_sourceCode two-column right">
+    # multiconfig (N-level)
+
+    # config
+    # ├── deploy.rb
+    # ├── deploy
+    # │   ├── service.rb
+    # │   ├── service
+    # │   │   ├── api.rb
+    # │   │   ├── api
+    # │   │   │   ├── production.rb
+    # │   │   │   ├── qa.rb
+    # ... ... ... └── ...
+
+    $ cap service:api:production deploy
+
+    # deploy.rb +
+    # service.rb +
+    # api.rb +
+    # production.rb
+  </pre>
+</div>
+
+!SLIDE
+# capistrano-multiconfig
+
+* like multistage
+* not only about stages
+* unlimited recursive configurations
 
 !SLIDE bullets incremental
 # Benefits
@@ -22,11 +66,11 @@ For example
 * Reuseable code (DRY)
 * Security policy
 
-!SLIDE
-# Layout per application
-
-!SLIDE code small
-
+!SLIDE small
+# Layout
+<div class="two-column-container">
+  <pre class="sh_ruby sh_sourceCode two-column left">
+    # Layout per application
     .
     ├── config
     │   ├── deploy
@@ -42,27 +86,16 @@ For example
     ├── Capfile
     └── Gemfile
 
-!SLIDE
-# Invocation
-
-!SLIDE
-
-## Deploy to production
-
+    # Deploy to PRODUCTION
     $ cap blog:production deploy
     $ cap wiki:production deploy
 
-## Deploy to qa
-
-    $ cap blog:qa deploy
-    $ cap wiki:qa deploy
-
-!SLIDE
-# Layout per environment
-
-!SLIDE code small
-
-    @@@ sh
+    # Deploy to QA
+    $ cap blog:production deploy
+    $ cap wiki:production deploy
+  </pre>
+  <pre class="sh_ruby sh_sourceCode two-column right">
+    # Layout per environment
     .
     ├── config
     │   ├── deploy
@@ -78,20 +111,25 @@ For example
     ├── Capfile
     └── Gemfile
 
-!SLIDE
-# Invocation
-
-!SLIDE
-
-## Deploy to production
-
-    @@@ sh
+    # Deploy to PRODUCTION
     $ cap production:blog deploy
     $ cap production:wiki deploy
 
-## Deploy to qa
-
-    @@@ sh
+    # Deploy to QA
     $ cap qa:blog deploy
     $ cap qa:wiki deploy
+  </pre>
+</div>
 
+
+!SLIDE small
+## Task invocation
+
+    $ cap NAMESPACE:CONFIGURATION \
+          NAMESPACE:RECIPE1 \
+          NAMESPACE:RECIPE2 \
+          ...
+
+&nbsp;
+
+    $ cap blog:qa unicorn:reload resque:reload

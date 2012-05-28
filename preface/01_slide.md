@@ -40,27 +40,28 @@ Application does NOT care about deployment.
 
 # Solution?
 
-!SLIDE bullets incremental
+!SLIDE
 
 # Separate deployment repo
 
 * It's not hard to create new repo
 * Deployment code completly isolated
 
-!SLIDE
+!SLIDE small
 
 # SOA
 
-Our apps are not trivial. Often project consists from several apps.
+Project consits of multiple applications
 
 * admin
+* billing
 * api
-* etc ...
+* ...
 
 !SLIDE
 # And
 
 Deployment rules are the same.
 
-!SLIDE transition=fade
+!SLIDE
 How to share deployment code?

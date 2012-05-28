@@ -6,6 +6,10 @@ body, .slide {
   background-origin: padding-box;
 }
 
+#preso pre {
+  background-color: #F4F4F4;
+}
+
 #preso code {
   display: block;
   border: 1px dashed #65aaba;
@@ -32,3 +36,25 @@ body, .slide {
   padding:20px;
   font-size:20px;
 }
+
+#footer {
+  background-color: #F4F4F4;
+}
+div.two-column-container {
+  overflow: hidden;
+	width: 100%
+}
+pre.two-column {
+  font-size: 20px;
+  float:left;
+  padding-left: 0;
+}
+pre.two-column.left {
+  width: 400px;
+  margin: 0 10px 0 25px;
+}
+pre.two-column.right {
+  width: 500px;
+  margin: 0 25px 0 10px;
+}
+
