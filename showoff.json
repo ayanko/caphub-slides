@@ -1,1 +1,9 @@
-{ "name": "My Preso", "sections": [ {"section":"one"} ]}
+{
+  "name": "CapHub",
+  "sections": [
+    {"section":"intro"},
+    {"section":"preface"},
+    {"section":"caphub"},
+    {"section":"wrapup"}
+  ]
+}
