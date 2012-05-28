@@ -2,6 +2,7 @@
   "name": "CapHub",
   "sections": [
     {"section":"intro"},
+    {"section":"about"},
     {"section":"preface"},
     {"section":"caphub"},
     {"section":"wrapup"}
