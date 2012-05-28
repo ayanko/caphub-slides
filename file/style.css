@@ -1,0 +1,21 @@
+body {
+  /*background-color: #3c4f6b;*/
+  background-color: #80b3ff;
+}
+.slide {
+  /*background-image: url2('images/railsware-logo.gif');*/
+  background-repeat:no-repeat;
+  background-position:860px 10px;
+}
+
+#preso code {
+  display: block;
+  border: 1px dashed #65aaba;
+  background-color: #eee;
+  monospace;
+  padding:20px;
+}
+
+#preso a {
+  color: #3c4f6b;
+}
