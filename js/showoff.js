@@ -28,6 +28,8 @@ function setupPreso(load_slides, prefix) {
 	}
 	preso_started = true
 
+
+        // Load slides fetches images
 	loadSlidesBool = load_slides
 	loadSlidesPrefix = prefix
 	loadSlides(loadSlidesBool, loadSlidesPrefix)
@@ -50,7 +52,7 @@ function setupPreso(load_slides, prefix) {
 function loadSlides(load_slides, prefix) {
 	//load slides offscreen, wait for images and then initialize
 	if (load_slides) {
-		$("#slides").load("slides", false, function(){
+		$("#slides").load(loadSlidesPrefix + "slides", false, function(){
 			$("#slides img").batchImageLoad({
 			loadingCompleteCallback: initializePresentation(prefix)
 		})
@@ -64,7 +66,7 @@ function loadSlides(load_slides, prefix) {
 
 function initializePresentation(prefix) {
 	// unhide for height to work in static mode
-  $("#slides").show();
+        $("#slides").show();
 
 	//center slides offscreen
 	centerSlides($('#slides > .slide'))
@@ -90,7 +92,11 @@ function initializePresentation(prefix) {
 		slidesLoaded = true
 	}
 	setupSlideParamsCheck();
-	sh_highlightDocument(prefix+'/js/sh_lang/', '.min.js')
+        try {
+	    sh_highlightDocument(prefix+'/js/sh_lang/', '.min.js')
+	} catch(e) {
+	    sh_highlightDocument();
+	}
 	$("#preso").trigger("showoff:loaded");
 }
 
@@ -101,7 +107,7 @@ function centerSlides(slides) {
 }
 
 function centerSlide(slide) {
-	var slide_content = $(slide).children(".content").first()
+	var slide_content = $(slide).find(".content").first()
 	var height = slide_content.height()
 	var mar_top = (0.5 * parseFloat($(slide).height())) - (0.5 * parseFloat(height))
 	if (mar_top < 0) {
@@ -117,7 +123,7 @@ function setupMenu() {
 	var menu = new ListMenu()
 
 	slides.each(function(s, elem) {
-		content = $(elem).children(".content")
+		content = $(elem).find(".content")
 		shortTxt = $(content).text().substr(0, 20)
 		path = $(content).attr('ref').split('/')
 		currSlide += 1
@@ -195,6 +201,8 @@ function showSlide(back_step) {
 	if (fullPage) {
 		$('#preso').css({'width' : '100%', 'overflow' : 'visible'});
 		currentSlide.css({'width' : '100%', 'text-align' : 'center', 'overflow' : 'visible'});
+	} else {
+		$('#preso').css({'width' : '', 'overflow' : ''});
 	}
 
 	percent = getSlidePercent()
@@ -215,7 +223,19 @@ function showSlide(back_step) {
   var currentContent = $(currentSlide).find(".content")
 	currentContent.trigger("showoff:show");
 
-	return getCurrentNotes()
+	var ret = getCurrentNotes();
+
+  // Update presenter view, if we spawned one
+	if ('presenterView' in window) {
+    var pv = window.presenterView;
+		pv.slidenum = slidenum;
+    pv.incrCurr = incrCurr
+    pv.incrSteps = incrSteps
+		pv.showSlide(true);
+		pv.postSlide();
+	}
+
+	return ret;
 }
 
 function getSlideProgress()
@@ -252,6 +272,16 @@ function determineIncremental()
 	})
 }
 
+function showIncremental(incr)
+{
+		elem = incrElem.eq(incrCurr)
+		if (incrCode && elem.hasClass('command')) {
+			incrElem.eq(incrCurr).css('visibility', 'visible').jTypeWriter({duration:1.0})
+		} else {
+			incrElem.eq(incrCurr).css('visibility', 'visible')
+		}
+}
+
 function prevStep()
 {
 
@@ -277,13 +307,12 @@ function nextStep()
 		slidenum++
 		return showSlide()
 	} else {
-		elem = incrElem.eq(incrCurr)
-		if (incrCode && elem.hasClass('command')) {
-			incrElem.eq(incrCurr).css('visibility', 'visible').jTypeWriter({duration:1.0})
-		} else {
-			incrElem.eq(incrCurr).css('visibility', 'visible')
-		}
-		incrCurr++
+		showIncremental(incrCurr);
+		var incrEvent = jQuery.Event("showoff:incr");
+		incrEvent.slidenum = slidenum;
+		incrEvent.incr = incrCurr;
+		$(currentSlide).find(".content").trigger(incrEvent);
+		incrCurr++;
 	}
 }
 
@@ -412,9 +441,14 @@ function keyDown(event)
 	{
 		removeResults();
 	}
-	else if (key == 80) // 'p' for preshow
+	else if (key == 80) // 'p' for preshow, 'P' for pause
 	{
-		togglePreShow();
+    if (shiftKeyActive) {
+      togglePause();
+    }
+    else {
+      togglePreShow();
+    }
 	}
 	return true
 }
@@ -641,3 +675,7 @@ function nextPreShowImage() {
 /********************
  End PreShow Code
  ********************/
+
+function togglePause() {
+  $("#pauseScreen").toggle();
+}

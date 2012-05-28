@@ -11,6 +11,10 @@
   <link rel="stylesheet" href="./css/reset.css" type="text/css"/>
   <link rel="stylesheet" href="./css/showoff.css" type="text/css"/>
 
+  <link type="text/css" href="./css/fg.menu.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href="./css/theme/ui.all.css" media="screen" rel="stylesheet" />
+  <link type="text/css" href="./css/sh_style.css" rel="stylesheet" />
+
   <script type="text/javascript" src="./js/jquery-1.4.2.min.js"></script>
   <script type="text/javascript" src="./js/jquery.cycle.all.js"></script>
 	<script type="text/javascript" src="./js/jquery-print.js"></script>
@@ -26,12 +30,16 @@
   <script type="text/javascript" src="./js/showoffcore.js"></script>
   <script type="text/javascript" src="./js/coffee-script.js"></script>
 
-  <link type="text/css" href="./css/fg.menu.css" media="screen" rel="stylesheet" />
-  <link type="text/css" href="./css/theme/ui.all.css" media="screen" rel="stylesheet" />
-  <link type="text/css" href="./css/sh_style.css" rel="stylesheet" >
+  
+    
+      <script type="text/javascript" src="./js/sh_lang/sh_ruby.min.js"></script>
+    
+      <script type="text/javascript" src="./js/sh_lang/sh_sh.min.js"></script>
+    
+  
 
   
-    <link rel="stylesheet" href="file/style.css" type="text/css"/>
+    <link rel="stylesheet" href="./file/style.css" type="text/css"/>
   
 
   
@@ -61,6 +69,7 @@
     <tr><td class="key">r</td><td>reload slides</td></tr>
     <tr><td class="key">n</td><td>toggle notes</td></tr>
     <tr><td class="key">p</td><td>run preshow</td></tr>
+    <tr><td class="key">P</td><td>toggle pause</td></tr>
   </table>
 </div>
 
@@ -77,12 +86,24 @@
 </div>
 
 <div id="slides" class="offscreen" style="display:none;">
-<div class="slide" data-transition="none"><div class="content" ref="intro/01_slide">
-<p><img src="./file/intro/../images/caphub-logo.png" width="613" height="239" alt="CapHub Logo"/></p>
+<div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="intro/01_slide">
+<p><img src="./file/intro/../images/caphub-logo.png" width="613" height="239" alt="CapHub Logo"/>
 
 <p>Multiple applications deployment</p>
+</p>
+<div>
 </div>
-</div><div class="slide" data-transition="none"><div class="content" ref="about/01_slide">
+</div></div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="about/01_slide">
 <h1>Andriy Yanko</h1>
 
 <ul>
@@ -90,24 +111,50 @@
 <li><a href="http://railsware.github.com/libskypekit">railsware.github.com/libskypekit</a></li>
 <li><a href="http://railsware.github.com/skypekit">railsware.github.com/skypekit</a></li>
 </ul>
-
 </div>
-</div><div class="slide" data-transition="none"><div class="content" ref="preface/01_slide/1">
-<p><img src="./file/preface/../images/capistrano.png" width="328" height="130" alt="Capistrano logo"/></p>
+<div>
 </div>
-</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="preface/01_slide/2">
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="preface/01_slide/1">
+<p><img src="./file/preface/../images/capistrano.png" width="328" height="130" alt="Capistrano logo"/>
+</p>
+<div>
+</div>
+</div></div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content bullets incremental" ref="preface/01_slide/2">
 <h1>Capistrano</h1>
 
 <ul>
 <li>Easy</li>
 <li>Basic rails recipes aboard</li>
 </ul>
-
 </div>
-</div><div class="slide" data-transition="none"><div class="content" ref="preface/01_slide/3">
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="preface/01_slide/3">
 <h1>But</h1>
 </div>
-</div><div class="slide" data-transition="none"><div class="content" ref="preface/01_slide/4">
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="preface/01_slide/4">
 <h3>Gemfile</h3>
 
 <pre class="sh_ruby"><code>group :deploy do
@@ -122,22 +169,49 @@ end</code></pre>
 &#x251C;&#x2500;&#x2500; production.rb
 &#x2514;&#x2500;&#x2500; staging.rb</code></pre>
 </div>
-</div><div class="slide" data-transition="none"><div class="content" ref="preface/01_slide/5">
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="preface/01_slide/5">
 <p>Application does NOT care about deployment.</p>
 </div>
-</div><div class="slide" data-transition="none"><div class="content" ref="preface/01_slide/6">
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="preface/01_slide/6">
 <h1>Solution?</h1>
 </div>
-</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="preface/01_slide/7">
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content bullets incremental" ref="preface/01_slide/7">
 <h1>Separate deployment repo</h1>
 
 <ul>
 <li>It's not hard to create new repo</li>
 <li>Deployment code completly isolated</li>
 </ul>
-
 </div>
-</div><div class="slide" data-transition="none"><div class="content" ref="preface/01_slide/8">
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="preface/01_slide/8">
 <h1>SOA</h1>
 
 <p>Our apps are not trivial. Often project consists from several apps.</p>
@@ -147,22 +221,49 @@ end</code></pre>
 <li>api</li>
 <li>etc ...</li>
 </ul>
-
 </div>
-</div><div class="slide" data-transition="none"><div class="content" ref="preface/01_slide/9">
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="preface/01_slide/9">
 <h1>And</h1>
 
 <p>Deployment rules are the same.</p>
 </div>
-</div><div class="slide" data-transition="fade"><div class="content" ref="preface/01_slide/10">
+<div>
+</div>
+</div></div><div class="slide" data-transition="fade"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="preface/01_slide/10">
 <p>How to share deployment code?</p>
 </div>
-</div><div class="slide" data-transition="none"><div class="content" ref="caphub/01_slide/1">
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="caphub/01_slide/1">
 <h1>CapHub</h1>
 
 <p>Multiple 'capistrano configuration' in one place.</p>
 </div>
-</div><div class="slide" data-transition="none"><div class="content" ref="caphub/01_slide/2">
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="caphub/01_slide/2">
 <h1>Idea</h1>
 
 <p>We often use dead-simple mulistage extension</p>
@@ -175,7 +276,14 @@ end</code></pre>
 <pre><code>$ cap production deploy
 </code></pre>
 </div>
-</div><div class="slide" data-transition="none"><div class="content bullets incremental" ref="caphub/01_slide/3">
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content bullets incremental" ref="caphub/01_slide/3">
 <h1>Benefits</h1>
 
 <ul>
@@ -183,12 +291,25 @@ end</code></pre>
 <li>Reuseable code (DRY)</li>
 <li>Security policy</li>
 </ul>
-
 </div>
-</div><div class="slide" data-transition="none"><div class="content" ref="caphub/01_slide/4">
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="caphub/01_slide/4">
 <h1>Layout per application</h1>
 </div>
-</div><div class="slide" data-transition="none"><div class="content code small" ref="caphub/01_slide/5">
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content code small" ref="caphub/01_slide/5">
 <pre><code>.
 &#x251C;&#x2500;&#x2500; config
 &#x2502;   &#x251C;&#x2500;&#x2500; deploy
@@ -205,10 +326,24 @@ end</code></pre>
 &#x2514;&#x2500;&#x2500; Gemfile
 </code></pre>
 </div>
-</div><div class="slide" data-transition="none"><div class="content" ref="caphub/01_slide/6">
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="caphub/01_slide/6">
 <h1>Invocation</h1>
 </div>
-</div><div class="slide" data-transition="none"><div class="content" ref="caphub/01_slide/7">
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="caphub/01_slide/7">
 <h2>Deploy to production</h2>
 
 <pre><code>$ cap blog:production deploy
@@ -221,10 +356,24 @@ $ cap wiki:production deploy
 $ cap wiki:qa deploy
 </code></pre>
 </div>
-</div><div class="slide" data-transition="none"><div class="content" ref="caphub/01_slide/8">
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="caphub/01_slide/8">
 <h1>Layout per environment</h1>
 </div>
-</div><div class="slide" data-transition="none"><div class="content code small" ref="caphub/01_slide/9">
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content code small" ref="caphub/01_slide/9">
 <pre class="sh_sh"><code>.
 &#x251C;&#x2500;&#x2500; config
 &#x2502;   &#x251C;&#x2500;&#x2500; deploy
@@ -240,10 +389,24 @@ $ cap wiki:qa deploy
 &#x251C;&#x2500;&#x2500; Capfile
 &#x2514;&#x2500;&#x2500; Gemfile</code></pre>
 </div>
-</div><div class="slide" data-transition="none"><div class="content" ref="caphub/01_slide/10">
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="caphub/01_slide/10">
 <h1>Invocation</h1>
 </div>
-</div><div class="slide" data-transition="none"><div class="content" ref="caphub/01_slide/11">
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="caphub/01_slide/11">
 <h2>Deploy to production</h2>
 
 <pre class="sh_sh"><code>$ cap production:blog deploy
@@ -254,7 +417,14 @@ $ cap production:wiki deploy</code></pre>
 <pre class="sh_sh"><code>$ cap qa:blog deploy
 $ cap qa:wiki deploy</code></pre>
 </div>
-</div><div class="slide" data-transition="none"><div class="content bullets thanks small" ref="wrapup/01_slide">
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content bullets thanks small" ref="wrapup/01_slide">
 <h1>Thanks</h1>
 
 <ul>
@@ -263,9 +433,13 @@ $ cap qa:wiki deploy</code></pre>
 <li>OSS activity: <a href="http://railsware.github.com">railsware.github.com</a></li>
 <li><a href="http://github.com/ayanko">github.com/ayanko</a></li>
 </ul>
-
 </div>
-</div></div>
+<div>
+</div>
+</div></div></div>
+<div id="pauseScreen">
+  
+</div>
 
 </body>
 </html>

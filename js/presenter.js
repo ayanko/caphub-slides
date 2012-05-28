@@ -2,7 +2,13 @@
 var w = null;
 
 $(function(){
-	w = window.open('/');
+	w = window.open('/' + window.location.search);
+
+	// Give the slide window a handle to the presenter view window.
+	// This will let either window be made fullscreen and
+	// still process slide advance/rewinds correctly.
+	w.presenterView = window;
+
   // side menu accordian crap
 	$("#preso").bind("showoff:loaded", function (event) {
 		$(".menu > ul ul").hide()
@@ -16,7 +22,11 @@ $(function(){
 			}
 			return false
 		}).next().hide()
-	})
+	});
+
+  $("#minStop").hide()
+  $("#startTimer").click(function() { toggleTimer() })
+  $("#stopTimer").click(function() { toggleTimer() })
 });
 
 function presPrevStep()
@@ -28,6 +38,10 @@ function presPrevStep()
 
 function presNextStep()
 {
+  // read the variables set by our spawner
+  incrCurr = w.incrCurr
+  incrSteps = w.incrSteps
+
 	nextStep()
 	w.nextStep()
 	postSlide()
@@ -126,4 +140,65 @@ function keyDown(event)
 		w.togglePreShow();
 	}
 	return true
+}
+
+//* TIMER *//
+
+var timerSetUp = false;
+var timerRunning = false;
+var intervalRunning = false;
+var seconds = 0;
+var totalMinutes = 35;
+
+function toggleTimer()
+{
+  if (!timerRunning) {
+    timerRunning = true
+    totalMinutes = parseInt($("#timerMinutes").attr('value'))
+    $("#minStart").hide()
+    $("#minStop").show()
+    $("#timerInfo").text(timerStatus(0));
+    seconds = 0
+    if (!intervalRunning) {
+      intervalRunning = true
+      setInterval(function() {
+        if (!timerRunning) { return; }
+        seconds++;
+        $("#timerInfo").text(timerStatus(seconds));
+      }, 1000);  // fire every minute
+    }
+  } else {
+    seconds = 0
+    timerRunning = false
+    totalMinutes = 0
+    $("#timerInfo").text('')
+    $("#minStart").show()
+    $("#minStop").hide()
+  }
+}
+
+function timerStatus(seconds) {
+  var minutes = Math.round(seconds / 60);
+  var left = (totalMinutes - minutes);
+  var percent = Math.round((minutes / totalMinutes) * 100);
+  var progress = getSlidePercent() - percent;
+  setProgressColor(progress);
+  return minutes + '/' + left + ' - ' + percent + '%';
+}
+
+function setProgressColor(progress) {
+  ts = $('#timerSection')
+  ts.removeClass('tBlue')
+  ts.removeClass('tGreen')
+  ts.removeClass('tYellow')
+  ts.removeClass('tRed')
+  if(progress > 10) {
+    ts.addClass('tBlue')
+  } else if (progress > 0) {
+    ts.addClass('tGreen')
+  } else if (progress > -10) {
+    ts.addClass('tYellow')
+  } else {
+    ts.addClass('tRed')
+  }
 }

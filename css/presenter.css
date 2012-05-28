@@ -1,6 +1,7 @@
 div.zoomed {
   zoom: 50%;
-  -moz-transform: scale(50%);
+  -moz-transform: scale(0.5);
+  -moz-transform-origin: 0 0;
 }
 
 #preso { margin-top: 20px; }
@@ -10,12 +11,17 @@ div.zoomed {
   font-size: 1.5em;
 }
 
+#timerSection {
+  padding: 15px 10px;
+  border-top: 1px solid #555;
+  border-bottom: 1px solid #555;
+}
 #progress {
   padding: 10px;
 }
 #slideSource {
   padding: 10px;
-  background: #9d9;
+  background: #ccc;
 }
 
 #preview {
@@ -64,3 +70,8 @@ div.zoomed {
   padding: 10px;
   background: #eee;
 }
+
+.tBlue   { background: #79d; }
+.tGreen  { background: #9d9; }
+.tRed    { background: #d99; }
+.tYellow { background: #dd9; }
