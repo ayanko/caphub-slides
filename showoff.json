@@ -1,5 +1,9 @@
 {
   "name": "CapHub",
+  "author": "Andriy Yanko",
+  "templates" : {
+    "default" : "default.tpl"
+  },
   "sections": [
     {"section":"intro"},
     {"section":"about"},

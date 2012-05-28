@@ -1,11 +1,9 @@
-body {
-  /*background-color: #3c4f6b;*/
-  background-color: #80b3ff;
-}
-.slide {
-  /*background-image: url2('images/railsware-logo.gif');*/
-  background-repeat:no-repeat;
-  background-position:860px 10px;
+body, .slide {
+  background-color: #F4F4F4;
+  background-image: url(images/bg.gif);
+  background-attachment: scroll;
+  background-clip: border-box;
+  background-origin: padding-box;
 }
 
 #preso code {
@@ -18,4 +16,19 @@ body {
 
 #preso a {
   color: #3c4f6b;
+  color: #DA131A;
+}
+
+.header {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url(images/railsware-logo.gif);
+  background-repeat:no-repeat;
+  background-position:860px 10px;
+}
+
+.header .status {
+  padding:20px;
+  font-size:20px;
 }
