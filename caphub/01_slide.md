@@ -27,13 +27,18 @@ Multiple capistrano _configurations_ and _recipes_ in one place.
   (convention)
 
     @@@ sh
-    $ tree
-    .
-    ├── config  # your configurations
-    ├── lib     # your extensions
-    ├── recipes # your recipes
-    ├── Gemfile # OSS extensions/recipes
-    └── Capfile # initialize everything
+    $ gem install caphub
+    $ caphub my_deploy
+
+&nbsp;
+
+    @@@ sh
+    my_deploy/
+    ├── config/  # your configurations
+    ├── lib/     # your extensions
+    ├── recipes/ # your recipes
+    ├── Gemfile  # OSS extensions/recipes
+    └── Capfile  # initialize everything
 
 !SLIDE
 # capistrano-multiconfig
