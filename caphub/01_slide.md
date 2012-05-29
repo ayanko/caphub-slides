@@ -59,9 +59,7 @@ config
     ├── qa.rb
     └── ...
 
-$ cap qa deploy
 
-# deploy.rb + qa.rb
   </pre>
 
   <pre class="sh_ruby sh_sourceCode two-column right">
@@ -76,15 +74,21 @@ config
 │   │   ├── production.rb
 │   │   ├── qa.rb
 ... ... └── ...
-
-$ cap api:qa deploy
-
-# deploy.rb +
-# api.rb +
-# production.rb
   </pre>
 </div>
 
+&nbsp;
+
+<div class="two-column-container">
+  <pre class="sh_ruby sh_sourceCode two-column left">
+$ cap qa deploy
+$ cap production deploy
+  </pre>
+  <pre class="sh_ruby sh_sourceCode two-column right">
+$ cap api:qa deploy
+$ cap api:production deploy
+  </pre>
+</div>
 
 !SLIDE small
 # Layout
@@ -105,14 +109,6 @@ $ cap api:qa deploy
 ├── recipes
 ├── Capfile
 └── Gemfile
-
-# Deploy to PRODUCTION
-$ cap blog:production deploy
-$ cap wiki:production deploy
-
-# Deploy to QA
-$ cap blog:qa deploy
-$ cap wiki:qa deploy
   </pre>
   <pre class="sh_ruby sh_sourceCode two-column right">
 # Layout per environment
@@ -130,17 +126,21 @@ $ cap wiki:qa deploy
 ├── recipes
 ├── Capfile
 └── Gemfile
-
-# Deploy to PRODUCTION
-$ cap production:blog deploy
-$ cap production:wiki deploy
-
-# Deploy to QA
-$ cap qa:blog deploy
-$ cap qa:wiki deploy
   </pre>
 </div>
 
+Production deploy &nbsp;
+
+<div class="two-column-container">
+  <pre class="sh_ruby sh_sourceCode two-column left">
+$ cap blog:production deploy
+$ cap wiki:production deploy
+  </pre>
+  <pre class="sh_ruby sh_sourceCode two-column right">
+$ cap production:blog deploy
+$ cap production:wiki deploy
+  </pre>
+</div>
 !SLIDE smaller
 # Inherited configurations
 

@@ -1,4 +1,4 @@
-!SLIDE small bullets incremental
+!SLIDE bullets incremental
 
 ![Capistrano logo](../images/capistrano.png)
 
@@ -30,11 +30,11 @@
 
 !SLIDE
 
-Is this a problem?
+# Is this a problem?
 
 !SLIDE
 
-Application does NOT care about deployment.
+## Application does NOT care about deployment.
 
 
 !SLIDE
@@ -48,18 +48,18 @@ Application does NOT care about deployment.
 * It's not hard to create new repo
 * Deployment code completely isolated
 
-!SLIDE small
+!SLIDE
 
-## SOA
+# SOA
 
-Project consists of multiple applications:
+## Project consists of multiple applications:
 
 * admin
 * billing
 * api
 * ...
 
-And a lot of deployment rules are the same.
+## And a lot of deployment rules are the same.
 
 !SLIDE
-How to share deployment code?
+# How to share deployment?
