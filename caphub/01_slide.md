@@ -111,8 +111,8 @@ $ cap blog:production deploy
 $ cap wiki:production deploy
 
 # Deploy to QA
-$ cap blog:production deploy
-$ cap wiki:production deploy
+$ cap blog:qa deploy
+$ cap wiki:qa deploy
   </pre>
   <pre class="sh_ruby sh_sourceCode two-column right">
 # Layout per environment
@@ -142,10 +142,10 @@ $ cap qa:wiki deploy
 </div>
 
 !SLIDE smaller
-# Configuration examples
+# Inherited configurations
 
     @@@ ruby
-    # config/deploy/blog.rb
+    # config/deploy.rb
     set :scm, :git
     set :branch, 'master'
 

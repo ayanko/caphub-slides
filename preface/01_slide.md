@@ -46,13 +46,13 @@ Application does NOT care about deployment.
 # Separate deployment repo
 
 * It's not hard to create new repo
-* Deployment code completly isolated
+* Deployment code completely isolated
 
 !SLIDE small
 
 ## SOA
 
-Project consits of multiple applications:
+Project consists of multiple applications:
 
 * admin
 * billing
