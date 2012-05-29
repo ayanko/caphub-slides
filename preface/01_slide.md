@@ -48,7 +48,7 @@
 * It's not hard to create new repo
 * Deployment code completely isolated
 
-!SLIDE
+!SLIDE bullets
 
 # SOA
 
