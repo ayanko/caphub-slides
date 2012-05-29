@@ -14,10 +14,22 @@ Multiple capistrano _configurations_ and _recipes_ in one place.
 * multi configuration support
 * developer is NOT forced to use special layout
 
+!SLIDE small
+# CapHub layout
+
+  (by convention)
+
+    .
+    ├── config  # your configurations
+    ├── lib     # your extensions
+    ├── recipes # your recipes
+    ├── Gemfile # OSS extensions/recipes
+    └── Capfile # initialize everything
+
 !SLIDE
 # capistrano-multiconfig
 
-Core implementation of caphub concept
+core implementation of caphub concept
 
 * like multistage
 * not only about stages
@@ -127,9 +139,46 @@ Core implementation of caphub concept
   </pre>
 </div>
 
+!SLIDE small
+# Configuration example
+
+TODO
 
 !SLIDE small
-## Task invocation
+# Recipe best practices
+
+* use namespace
+* group complex tasks into sub namespaces
+* task as verb
+* introduce new role for your tasks
+* describe your task
+* provide configurable variables
+* prefix variables with the same name as namespace
+
+!SLIDE smaller
+# Recipe example
+
+    @@@ ruby
+    set :xvfb_display,         ":1"
+    set :xvfb_screen,          "0"
+    set :xvfb_resolution,      "1280x800x24"
+
+    namespace :xvfb do
+      desc "Start XVFB service"
+      task :start, :roles => :xvfb do
+        run "Xvfb #{xvfb_display} \
+             -screen #{xvfb_screen} #{xvfb_resolution} &"
+      end
+
+      desc "Stop XVFB service"
+      task :stop, :roles => :xvfb do
+        run "kill $(ps ax|grep '[X]vfb #{xvfb_display}' | \
+            head -1 |awk '{ print $1}')"
+      end
+    end
+
+!SLIDE small
+# Task invocation
 
     $ cap NAMESPACE:CONFIGURATION \
           NAMESPACE:RECIPE1 \
