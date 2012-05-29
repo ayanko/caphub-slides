@@ -1,7 +1,8 @@
 !SLIDE
 # Andriy Yanko
 
-* [ayanko.github.com/libevent](http://ayanko.github.com/libevent)
-* [railsware.github.com/libskypekit](http://railsware.github.com/libskypekit)
-* [railsware.github.com/skypekit](http://railsware.github.com/skypekit)
+[ayanko.github.com](http://ayanko.github.com)
+
+## some gems
+capistrano-multiconfig, libevent, rspec-example\_steps, rack\_session\_access, activeresource-persistent, libskypekit, skypekit, ...
 

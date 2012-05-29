@@ -1,15 +1,27 @@
 !SLIDE 
 # CapHub
 
-Multiple 'capistrano configuration' in one place.
+
+Multiple capistrano _configurations_ and _recipes_ in one place.
 
 !SLIDE small
 # Concept
 
+* DRY
 * segregate *application* and *deployment*
 * segregate *configurations* and *recipes*
 * no capistrano hacks
-* multi configuration support (similar to well-known multistage)
+* multi configuration support
+* developer is NOT forced to use special layout
+
+!SLIDE
+# capistrano-multiconfig
+
+Core implementation of caphub concept
+
+* like multistage
+* not only about stages
+* unlimited recursive configurations
 
 !SLIDE smaller
 # multistage vs multiconfig
@@ -52,12 +64,6 @@ Multiple 'capistrano configuration' in one place.
   </pre>
 </div>
 
-!SLIDE
-# capistrano-multiconfig
-
-* like multistage
-* not only about stages
-* unlimited recursive configurations
 
 !SLIDE bullets incremental
 # Benefits

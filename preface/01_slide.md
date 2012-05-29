@@ -1,11 +1,6 @@
-!SLIDE
+!SLIDE small bullets incremental
 
 ![Capistrano logo](../images/capistrano.png)
-
-
-!SLIDE bullets incremental
-
-# Capistrano
 
 * Easy
 * Basic rails recipes aboard
@@ -13,7 +8,7 @@
 !SLIDE
 # But
 
-!SLIDE
+!SLIDE small
 
 ### Gemfile
 
@@ -40,7 +35,7 @@ Application does NOT care about deployment.
 
 # Solution?
 
-!SLIDE
+!SLIDE small
 
 # Separate deployment repo
 
@@ -49,19 +44,16 @@ Application does NOT care about deployment.
 
 !SLIDE small
 
-# SOA
+## SOA
 
-Project consits of multiple applications
+Project consits of multiple applications:
 
 * admin
 * billing
 * api
 * ...
 
-!SLIDE
-# And
-
-Deployment rules are the same.
+And a lot of deployment rules are the same.
 
 !SLIDE
 How to share deployment code?
