@@ -2,7 +2,8 @@
 
 ![Capistrano logo](../images/capistrano.png)
 
-* Easy
+* Easy Install
+* `capify .`
 * Basic rails recipes aboard
 
 !SLIDE

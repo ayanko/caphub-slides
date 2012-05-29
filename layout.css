@@ -1,0 +1,14 @@
+.header .status {
+  padding: 20px;
+  font-size: 20px;
+}
+
+.header {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-image: url(images/railsware-logo.gif);
+  background-repeat:no-repeat;
+  background-position:860px 10px;
+}

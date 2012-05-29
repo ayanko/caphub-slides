@@ -17,8 +17,10 @@ Multiple capistrano _configurations_ and _recipes_ in one place.
 !SLIDE small
 # CapHub layout
 
-  (by convention)
+  (convention)
 
+    @@@ sh
+    $ tree
     .
     ├── config  # your configurations
     ├── lib     # your extensions
@@ -40,39 +42,39 @@ core implementation of caphub concept
 
 <div class="two-column-container">
   <pre class="sh_ruby sh_sourceCode two-column left">
-    # multistage (2-level)
+# multistage (2-level)
 
-    config
-    ├── deploy.rb
-    └── deploy
-        ├── production.rb
-        └── ...
+$ tree
+config
+├── deploy.rb
+└── deploy
+    ├── production.rb
+    ├── qa.rb
+    └── ...
 
-    $ cap production deploy
+$ cap qa deploy
 
-    # deploy.rb + production.rb
+# deploy.rb + qa.rb
   </pre>
 
   <pre class="sh_ruby sh_sourceCode two-column right">
-    # multiconfig (N-level)
+# multiconfig (N-level)
 
-    # config
-    # ├── deploy.rb
-    # ├── deploy
-    # │   ├── service.rb
-    # │   ├── service
-    # │   │   ├── api.rb
-    # │   │   ├── api
-    # │   │   │   ├── production.rb
-    # │   │   │   ├── qa.rb
-    # ... ... ... └── ...
+$ tree
+config
+├── deploy.rb
+├── deploy
+│   ├── api.rb
+│   ├── api
+│   │   ├── production.rb
+│   │   ├── qa.rb
+... ... └── ...
 
-    $ cap service:api:production deploy
+$ cap api:qa deploy
 
-    # deploy.rb +
-    # service.rb +
-    # api.rb +
-    # production.rb
+# deploy.rb +
+# api.rb +
+# production.rb
   </pre>
 </div>
 
@@ -88,61 +90,81 @@ core implementation of caphub concept
 # Layout
 <div class="two-column-container">
   <pre class="sh_ruby sh_sourceCode two-column left">
-    # Layout per application
-    .
-    ├── config
-    │   ├── deploy
-    │   │   ├── blog
-    │   │   │   ├── production.rb
-    │   │   │   └── qa.rb
-    │   │   └── wiki
-    │   │       ├── production.rb
-    │   │       └── qa.rb
-    │   ├── keys
-    │   └── deploy.rb
-    ├── recipes
-    ├── Capfile
-    └── Gemfile
+# Layout per application
+.
+├── config
+│   ├── deploy
+│   │   ├── blog
+│   │   │   ├── production.rb
+│   │   │   └── qa.rb
+│   │   └── wiki
+│   │       ├── production.rb
+│   │       └── qa.rb
+│   ├── keys
+│   └── deploy.rb
+├── recipes
+├── Capfile
+└── Gemfile
 
-    # Deploy to PRODUCTION
-    $ cap blog:production deploy
-    $ cap wiki:production deploy
+# Deploy to PRODUCTION
+$ cap blog:production deploy
+$ cap wiki:production deploy
 
-    # Deploy to QA
-    $ cap blog:production deploy
-    $ cap wiki:production deploy
+# Deploy to QA
+$ cap blog:production deploy
+$ cap wiki:production deploy
   </pre>
   <pre class="sh_ruby sh_sourceCode two-column right">
-    # Layout per environment
-    .
-    ├── config
-    │   ├── deploy
-    │   │   ├── production
-    │   │   │   ├── blog.rb
-    │   │   │   └── wiki.rb
-    │   │   └── qa
-    │   │       ├── blog.rb
-    │   │       └── qiki.rb
-    │   ├── keys
-    │   └── deploy.rb
-    ├── recipes
-    ├── Capfile
-    └── Gemfile
+# Layout per environment
+.
+├── config
+│   ├── deploy
+│   │   ├── production
+│   │   │   ├── blog.rb
+│   │   │   └── wiki.rb
+│   │   └── qa
+│   │       ├── blog.rb
+│   │       └── qiki.rb
+│   ├── keys
+│   └── deploy.rb
+├── recipes
+├── Capfile
+└── Gemfile
 
-    # Deploy to PRODUCTION
-    $ cap production:blog deploy
-    $ cap production:wiki deploy
+# Deploy to PRODUCTION
+$ cap production:blog deploy
+$ cap production:wiki deploy
 
-    # Deploy to QA
-    $ cap qa:blog deploy
-    $ cap qa:wiki deploy
+# Deploy to QA
+$ cap qa:blog deploy
+$ cap qa:wiki deploy
   </pre>
 </div>
 
-!SLIDE small
-# Configuration example
+!SLIDE smaller
+# Configurations example
 
-TODO
+    @@@ ruby
+    # config/deploy/blog.rb
+    set :xvfb_display,         ":99"
+    set :xvfb_resolution,      "800x600x24"
+    set :repository,  "git://github.com/me/blog.git"
+
+&nbsp;
+
+    @@@ ruby
+    # config/deploy/blog/production.rb
+    set :rails_env,  'production'
+    set :branch, 'master'
+    server 'wiki.example.com', :app, :db, :web, :xvfb
+
+&nbsp;
+
+    @@@ ruby
+    # config/deploy/blog/qa.rb
+    set :rails_env, 'qa'
+    set :branch, 'development'
+    server 'wiki-qa.example.com', :app, :db, :web, :xvfb
 
 !SLIDE small
 # Recipe best practices
@@ -159,32 +181,36 @@ TODO
 # Recipe example
 
     @@@ ruby
+    # recipe configuration
     set :xvfb_display,         ":1"
     set :xvfb_screen,          "0"
     set :xvfb_resolution,      "1280x800x24"
 
+    # recipe tasks
     namespace :xvfb do
       desc "Start XVFB service"
       task :start, :roles => :xvfb do
-        run "Xvfb #{xvfb_display} \
-             -screen #{xvfb_screen} #{xvfb_resolution} &"
+        command = "Xvfb #{xvfb_display} "
+        command << " -screen #{xvfb_screen} #{xvfb_resolution} &"
+        run command
       end
 
       desc "Stop XVFB service"
       task :stop, :roles => :xvfb do
-        run "kill $(ps ax|grep '[X]vfb #{xvfb_display}' | \
-            head -1 |awk '{ print $1}')"
+        command = "kill $(ps ax|grep '[X]vfb #{xvfb_display}'"
+        command << " | head -1 |awk '{ print $1}')"
+        run command
       end
     end
 
 !SLIDE small
-# Task invocation
+# Invocation
 
-    $ cap NAMESPACE:CONFIGURATION \
-          NAMESPACE:RECIPE1 \
-          NAMESPACE:RECIPE2 \
-          ...
+Synopsis
 
-&nbsp;
+    @@@ sh
+    $ cap CONFIGURATION RECIPE1 [RECIPE2 ...] 
+
+Example
 
     $ cap blog:qa unicorn:reload resque:reload

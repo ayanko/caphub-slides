@@ -1,3 +1,7 @@
+#footer {
+  background-color: #F4F4F4;
+}
+
 body, .slide {
   background-color: #F4F4F4;
   background-image: url(images/bg.gif);
@@ -6,55 +10,37 @@ body, .slide {
   background-origin: padding-box;
 }
 
-#preso pre {
-  background-color: #F4F4F4;
+#preso pre  {
+  display: block;
+  monospace;
+  background: #333;
+  color: #eee;
+  padding: 20px;
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.5);
+  box-shadow: 0 0 35px rgba(0,0,0,1.0);
+  -moz-box-shadow: 0 0 35px rgba(0,0,0,1.0);
+  -webkit-box-shadow: 0 0 35px rgba(0,0,0,1.0);
 }
 
-#preso code {
-  display: block;
-  border: 1px dashed #65aaba;
-  background-color: #eee;
-  monospace;
-  padding:20px;
+#preso div.smaller pre {
+  font-size:24px;
+}
+
+#preso div.two-column-container {
+  overflow: hidden;
+  width: 100%
+}
+
+#preso pre.two-column {
+  float:left;
+  font-size: 20px;
+  width: 450px;
+  padding: 20px 0 0 20px;
+  margin: 0 0px 0 25px;
 }
 
 #preso a {
   color: #3c4f6b;
   color: #DA131A;
-}
-
-.header {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: url(images/railsware-logo.gif);
-  background-repeat:no-repeat;
-  background-position:860px 10px;
-}
-
-.header .status {
-  padding:20px;
-  font-size:20px;
-}
-
-#footer {
-  background-color: #F4F4F4;
-}
-div.two-column-container {
-  overflow: hidden;
-	width: 100%
-}
-pre.two-column {
-  font-size: 20px;
-  float:left;
-  padding-left: 0;
-}
-pre.two-column.left {
-  width: 400px;
-  margin: 0 10px 0 25px;
-}
-pre.two-column.right {
-  width: 500px;
-  margin: 0 25px 0 10px;
 }
 
