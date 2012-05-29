@@ -18,7 +18,7 @@ Multiple capistrano _configurations_ and _recipes_ in one place.
 # Benefits
 
 * Centralized location
-* Reuseable code (DRY)
+* Reusable code (DRY)
 * Security policy
 
 !SLIDE small
