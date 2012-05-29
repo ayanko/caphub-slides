@@ -14,6 +14,13 @@ Multiple capistrano _configurations_ and _recipes_ in one place.
 * multi configuration support
 * developer is NOT forced to use special layout
 
+!SLIDE bullets incremental
+# Benefits
+
+* Centralized location
+* Reuseable code (DRY)
+* Security policy
+
 !SLIDE small
 # CapHub layout
 
@@ -33,7 +40,7 @@ Multiple capistrano _configurations_ and _recipes_ in one place.
 
 core implementation of caphub concept
 
-* like multistage
+* like multistage ext
 * not only about stages
 * unlimited recursive configurations
 
@@ -78,13 +85,6 @@ $ cap api:qa deploy
   </pre>
 </div>
 
-
-!SLIDE bullets incremental
-# Benefits
-
-* Centralized location
-* Reuseable code (DRY)
-* Security policy
 
 !SLIDE small
 # Layout
@@ -142,7 +142,7 @@ $ cap qa:wiki deploy
 </div>
 
 !SLIDE smaller
-# Configurations example
+# Configuration examples
 
     @@@ ruby
     # config/deploy/blog.rb
@@ -167,13 +167,13 @@ $ cap qa:wiki deploy
     server 'wiki-qa.example.com', :app, :db, :web, :xvfb
 
 !SLIDE small
-# Recipe best practices
+# Recipe
 
 * use namespace
 * group complex tasks into sub namespaces
 * task as verb
 * introduce new role for your tasks
-* describe your task
+* describe each task
 * provide configurable variables
 * prefix variables with the same name as namespace
 

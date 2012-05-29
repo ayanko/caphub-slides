@@ -10,6 +10,7 @@
 # But
 
 !SLIDE small
+## Deployment in application repo
 
 ### Gemfile
 
@@ -26,6 +27,10 @@
     ├── deploy.key
     ├── production.rb
     └── staging.rb
+
+!SLIDE
+
+Is this a problem?
 
 !SLIDE
 
