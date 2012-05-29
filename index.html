@@ -386,11 +386,30 @@ $ cap api:production deploy
   </div>
 </div>
 <div class="main"><div class="content small" ref="caphub/01_slide/7">
-<h1>Layout</h1>
+<h1>Invocation</h1>
+
+<p>Synopsis</p>
+
+<pre class="sh_sh"><code>$ cap CONFIGURATION RECIPE1 [RECIPE2 ...] </code></pre>
+
+<p>Example</p>
+
+<pre><code>$ cap blog:qa unicorn:reload resque:reload
+</code></pre>
+</div>
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content small" ref="caphub/01_slide/8">
+<h1>Layout design</h1>
 
 <div class="two-column-container">
   <pre class="sh_ruby sh_sourceCode two-column left">
-# Layout per application
+# Layout per application/project
 .
 &#x251C;&#x2500;&#x2500; config
 &#x2502;   &#x251C;&#x2500;&#x2500; deploy
@@ -407,7 +426,7 @@ $ cap api:production deploy
 &#x2514;&#x2500;&#x2500; Gemfile
   </pre>
   <pre class="sh_ruby sh_sourceCode two-column right">
-# Layout per environment
+# Layout per environment/stage
 .
 &#x251C;&#x2500;&#x2500; config
 &#x2502;   &#x251C;&#x2500;&#x2500; deploy
@@ -445,7 +464,7 @@ $ cap production:wiki deploy
     <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
   </div>
 </div>
-<div class="main"><div class="content smaller" ref="caphub/01_slide/8">
+<div class="main"><div class="content smaller" ref="caphub/01_slide/9">
 <h1>Inherited configurations</h1>
 
 <pre class="sh_ruby"><code># config/deploy.rb
@@ -468,25 +487,6 @@ server 'db.example.com', :db</code></pre>
 <pre class="sh_ruby"><code># config/deploy/blog/qa.rb
 set :branch, 'development'
 server 'blog-qa.example.com', :app, :db, :web</code></pre>
-</div>
-<div>
-</div>
-</div></div><div class="slide" data-transition="none"><div class="header">
-  <div class="status">
-    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
-  </div>
-</div>
-<div class="main"><div class="content small" ref="caphub/01_slide/9">
-<h1>Invocation</h1>
-
-<p>Synopsis</p>
-
-<pre class="sh_sh"><code>$ cap CONFIGURATION RECIPE1 [RECIPE2 ...] </code></pre>
-
-<p>Example</p>
-
-<pre><code>$ cap blog:qa unicorn:reload resque:reload
-</code></pre>
 </div>
 <div>
 </div>
