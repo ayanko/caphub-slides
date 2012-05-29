@@ -39,6 +39,10 @@
   
 
   
+    <link rel="stylesheet" href="./file/layout.css" type="text/css"/>
+  
+    <link rel="stylesheet" href="./file/railscast.css" type="text/css"/>
+  
     <link rel="stylesheet" href="./file/style.css" type="text/css"/>
   
 
@@ -93,8 +97,6 @@
 </div>
 <div class="main"><div class="content" ref="intro/01_slide">
 <p><img src="./file/intro/../images/caphub-logo.png" width="613" height="239" alt="CapHub Logo"/>
-
-<p>Multiple applications deployment</p>
 </p>
 <div>
 </div>
@@ -123,7 +125,8 @@
 <p><img src="./file/preface/../images/capistrano.png" width="328" height="130" alt="Capistrano logo"/>
 
 <ul>
-<li>Easy</li>
+<li>Easy Install</li>
+<li><code>capify .</code></li>
 <li>Basic rails recipes aboard</li>
 </ul>
 </p>
@@ -145,6 +148,8 @@
   </div>
 </div>
 <div class="main"><div class="content small" ref="preface/01_slide/3">
+<h2>Deployment in application repo</h2>
+
 <h3>Gemfile</h3>
 
 <pre class="sh_ruby"><code>group :deploy do
@@ -167,7 +172,7 @@ end</code></pre>
   </div>
 </div>
 <div class="main"><div class="content" ref="preface/01_slide/4">
-<p>Application does NOT care about deployment.</p>
+<p>Is this a problem?</p>
 </div>
 <div>
 </div>
@@ -177,6 +182,16 @@ end</code></pre>
   </div>
 </div>
 <div class="main"><div class="content" ref="preface/01_slide/5">
+<p>Application does NOT care about deployment.</p>
+</div>
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="preface/01_slide/6">
 <h1>Solution?</h1>
 </div>
 <div>
@@ -186,7 +201,7 @@ end</code></pre>
     <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
   </div>
 </div>
-<div class="main"><div class="content small" ref="preface/01_slide/6">
+<div class="main"><div class="content small" ref="preface/01_slide/7">
 <h1>Separate deployment repo</h1>
 
 <ul>
@@ -201,7 +216,7 @@ end</code></pre>
     <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
   </div>
 </div>
-<div class="main"><div class="content small" ref="preface/01_slide/7">
+<div class="main"><div class="content small" ref="preface/01_slide/8">
 <h2>SOA</h2>
 
 <p>Project consits of multiple applications:</p>
@@ -222,7 +237,7 @@ end</code></pre>
     <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
   </div>
 </div>
-<div class="main"><div class="content" ref="preface/01_slide/8">
+<div class="main"><div class="content" ref="preface/01_slide/9">
 <p>How to share deployment code?</p>
 </div>
 <div>
@@ -263,93 +278,7 @@ end</code></pre>
     <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
   </div>
 </div>
-<div class="main"><div class="content small" ref="caphub/01_slide/3">
-<h1>CapHub layout</h1>
-
-<p>(by convention)</p>
-
-<pre><code>.
-&#x251C;&#x2500;&#x2500; config  # your configurations
-&#x251C;&#x2500;&#x2500; lib     # your extensions
-&#x251C;&#x2500;&#x2500; recipes # your recipes
-&#x251C;&#x2500;&#x2500; Gemfile # OSS extensions/recipes
-&#x2514;&#x2500;&#x2500; Capfile # initialize everything
-</code></pre>
-</div>
-<div>
-</div>
-</div></div><div class="slide" data-transition="none"><div class="header">
-  <div class="status">
-    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
-  </div>
-</div>
-<div class="main"><div class="content" ref="caphub/01_slide/4">
-<h1>capistrano-multiconfig</h1>
-
-<p>core implementation of caphub concept</p>
-
-<ul>
-<li>like multistage</li>
-<li>not only about stages</li>
-<li>unlimited recursive configurations</li>
-</ul>
-</div>
-<div>
-</div>
-</div></div><div class="slide" data-transition="none"><div class="header">
-  <div class="status">
-    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
-  </div>
-</div>
-<div class="main"><div class="content smaller" ref="caphub/01_slide/5">
-<h1>multistage vs multiconfig</h1>
-
-<div class="two-column-container">
-  <pre class="sh_ruby sh_sourceCode two-column left">
-    # multistage (2-level)
-
-    config
-    &#x251C;&#x2500;&#x2500; deploy.rb
-    &#x2514;&#x2500;&#x2500; deploy
-        &#x251C;&#x2500;&#x2500; production.rb
-        &#x2514;&#x2500;&#x2500; ...
-
-    $ cap production deploy
-
-    # deploy.rb + production.rb
-  </pre>
-
-  <pre class="sh_ruby sh_sourceCode two-column right">
-    # multiconfig (N-level)
-
-    # config
-    # &#x251C;&#x2500;&#x2500; deploy.rb
-    # &#x251C;&#x2500;&#x2500; deploy
-    # &#x2502;   &#x251C;&#x2500;&#x2500; service.rb
-    # &#x2502;   &#x251C;&#x2500;&#x2500; service
-    # &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; api.rb
-    # &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; api
-    # &#x2502;   &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; production.rb
-    # &#x2502;   &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; qa.rb
-    # ... ... ... &#x2514;&#x2500;&#x2500; ...
-
-    $ cap service:api:production deploy
-
-    # deploy.rb +
-    # service.rb +
-    # api.rb +
-    # production.rb
-  </pre>
-</div>
-</div>
-<div>
-</div>
-</div></div><div class="slide" data-transition="none"><div class="header">
-  <div class="status">
-    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
-  </div>
-</div>
-<div class="main"><div class="content bullets incremental" ref="caphub/01_slide/6">
+<div class="main"><div class="content bullets incremental" ref="caphub/01_slide/3">
 <h1>Benefits</h1>
 
 <ul>
@@ -365,59 +294,82 @@ end</code></pre>
     <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
   </div>
 </div>
-<div class="main"><div class="content small" ref="caphub/01_slide/7">
-<h1>Layout</h1>
+<div class="main"><div class="content small" ref="caphub/01_slide/4">
+<h1>CapHub layout</h1>
+
+<p>(convention)</p>
+
+<pre class="sh_sh"><code>$ tree
+.
+&#x251C;&#x2500;&#x2500; config  # your configurations
+&#x251C;&#x2500;&#x2500; lib     # your extensions
+&#x251C;&#x2500;&#x2500; recipes # your recipes
+&#x251C;&#x2500;&#x2500; Gemfile # OSS extensions/recipes
+&#x2514;&#x2500;&#x2500; Capfile # initialize everything</code></pre>
+</div>
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content" ref="caphub/01_slide/5">
+<h1>capistrano-multiconfig</h1>
+
+<p>core implementation of caphub concept</p>
+
+<ul>
+<li>like multistage ext</li>
+<li>not only about stages</li>
+<li>unlimited recursive configurations</li>
+</ul>
+</div>
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content smaller" ref="caphub/01_slide/6">
+<h1>multistage vs multiconfig</h1>
 
 <div class="two-column-container">
   <pre class="sh_ruby sh_sourceCode two-column left">
-    # Layout per application
-    .
-    &#x251C;&#x2500;&#x2500; config
-    &#x2502;   &#x251C;&#x2500;&#x2500; deploy
-    &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; blog
-    &#x2502;   &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; production.rb
-    &#x2502;   &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500; qa.rb
-    &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500; wiki
-    &#x2502;   &#x2502;       &#x251C;&#x2500;&#x2500; production.rb
-    &#x2502;   &#x2502;       &#x2514;&#x2500;&#x2500; qa.rb
-    &#x2502;   &#x251C;&#x2500;&#x2500; keys
-    &#x2502;   &#x2514;&#x2500;&#x2500; deploy.rb
-    &#x251C;&#x2500;&#x2500; recipes
-    &#x251C;&#x2500;&#x2500; Capfile
-    &#x2514;&#x2500;&#x2500; Gemfile
+# multistage (2-level)
 
-    # Deploy to PRODUCTION
-    $ cap blog:production deploy
-    $ cap wiki:production deploy
+$ tree
+config
+&#x251C;&#x2500;&#x2500; deploy.rb
+&#x2514;&#x2500;&#x2500; deploy
+    &#x251C;&#x2500;&#x2500; production.rb
+    &#x251C;&#x2500;&#x2500; qa.rb
+    &#x2514;&#x2500;&#x2500; ...
 
-    # Deploy to QA
-    $ cap blog:production deploy
-    $ cap wiki:production deploy
+$ cap qa deploy
+
+# deploy.rb + qa.rb
   </pre>
+
   <pre class="sh_ruby sh_sourceCode two-column right">
-    # Layout per environment
-    .
-    &#x251C;&#x2500;&#x2500; config
-    &#x2502;   &#x251C;&#x2500;&#x2500; deploy
-    &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; production
-    &#x2502;   &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; blog.rb
-    &#x2502;   &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500; wiki.rb
-    &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500; qa
-    &#x2502;   &#x2502;       &#x251C;&#x2500;&#x2500; blog.rb
-    &#x2502;   &#x2502;       &#x2514;&#x2500;&#x2500; qiki.rb
-    &#x2502;   &#x251C;&#x2500;&#x2500; keys
-    &#x2502;   &#x2514;&#x2500;&#x2500; deploy.rb
-    &#x251C;&#x2500;&#x2500; recipes
-    &#x251C;&#x2500;&#x2500; Capfile
-    &#x2514;&#x2500;&#x2500; Gemfile
+# multiconfig (N-level)
 
-    # Deploy to PRODUCTION
-    $ cap production:blog deploy
-    $ cap production:wiki deploy
+$ tree
+config
+&#x251C;&#x2500;&#x2500; deploy.rb
+&#x251C;&#x2500;&#x2500; deploy
+&#x2502;   &#x251C;&#x2500;&#x2500; api.rb
+&#x2502;   &#x251C;&#x2500;&#x2500; api
+&#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; production.rb
+&#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; qa.rb
+... ... &#x2514;&#x2500;&#x2500; ...
 
-    # Deploy to QA
-    $ cap qa:blog deploy
-    $ cap qa:wiki deploy
+$ cap api:qa deploy
+
+# deploy.rb +
+# api.rb +
+# production.rb
   </pre>
 </div>
 </div>
@@ -428,10 +380,90 @@ end</code></pre>
     <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
   </div>
 </div>
-<div class="main"><div class="content small" ref="caphub/01_slide/8">
-<h1>Configuration example</h1>
+<div class="main"><div class="content small" ref="caphub/01_slide/7">
+<h1>Layout</h1>
 
-<p>TODO</p>
+<div class="two-column-container">
+  <pre class="sh_ruby sh_sourceCode two-column left">
+# Layout per application
+.
+&#x251C;&#x2500;&#x2500; config
+&#x2502;   &#x251C;&#x2500;&#x2500; deploy
+&#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; blog
+&#x2502;   &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; production.rb
+&#x2502;   &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500; qa.rb
+&#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500; wiki
+&#x2502;   &#x2502;       &#x251C;&#x2500;&#x2500; production.rb
+&#x2502;   &#x2502;       &#x2514;&#x2500;&#x2500; qa.rb
+&#x2502;   &#x251C;&#x2500;&#x2500; keys
+&#x2502;   &#x2514;&#x2500;&#x2500; deploy.rb
+&#x251C;&#x2500;&#x2500; recipes
+&#x251C;&#x2500;&#x2500; Capfile
+&#x2514;&#x2500;&#x2500; Gemfile
+
+# Deploy to PRODUCTION
+$ cap blog:production deploy
+$ cap wiki:production deploy
+
+# Deploy to QA
+$ cap blog:production deploy
+$ cap wiki:production deploy
+  </pre>
+  <pre class="sh_ruby sh_sourceCode two-column right">
+# Layout per environment
+.
+&#x251C;&#x2500;&#x2500; config
+&#x2502;   &#x251C;&#x2500;&#x2500; deploy
+&#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; production
+&#x2502;   &#x2502;   &#x2502;   &#x251C;&#x2500;&#x2500; blog.rb
+&#x2502;   &#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500; wiki.rb
+&#x2502;   &#x2502;   &#x2514;&#x2500;&#x2500; qa
+&#x2502;   &#x2502;       &#x251C;&#x2500;&#x2500; blog.rb
+&#x2502;   &#x2502;       &#x2514;&#x2500;&#x2500; qiki.rb
+&#x2502;   &#x251C;&#x2500;&#x2500; keys
+&#x2502;   &#x2514;&#x2500;&#x2500; deploy.rb
+&#x251C;&#x2500;&#x2500; recipes
+&#x251C;&#x2500;&#x2500; Capfile
+&#x2514;&#x2500;&#x2500; Gemfile
+
+# Deploy to PRODUCTION
+$ cap production:blog deploy
+$ cap production:wiki deploy
+
+# Deploy to QA
+$ cap qa:blog deploy
+$ cap qa:wiki deploy
+  </pre>
+</div>
+</div>
+<div>
+</div>
+</div></div><div class="slide" data-transition="none"><div class="header">
+  <div class="status">
+    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
+  </div>
+</div>
+<div class="main"><div class="content smaller" ref="caphub/01_slide/8">
+<h1>Configuration examples</h1>
+
+<pre class="sh_ruby"><code># config/deploy/blog.rb
+set :xvfb_display,         ":99"
+set :xvfb_resolution,      "800x600x24"
+set :repository,  "git://github.com/me/blog.git"</code></pre>
+
+<p/>
+
+<pre class="sh_ruby"><code># config/deploy/blog/production.rb
+set :rails_env,  'production'
+set :branch, 'master'
+server 'wiki.example.com', :app, :db, :web, :xvfb</code></pre>
+
+<p/>
+
+<pre class="sh_ruby"><code># config/deploy/blog/qa.rb
+set :rails_env, 'qa'
+set :branch, 'development'
+server 'wiki-qa.example.com', :app, :db, :web, :xvfb</code></pre>
 </div>
 <div>
 </div>
@@ -441,14 +473,14 @@ end</code></pre>
   </div>
 </div>
 <div class="main"><div class="content small" ref="caphub/01_slide/9">
-<h1>Recipe best practices</h1>
+<h1>Recipe</h1>
 
 <ul>
 <li>use namespace</li>
 <li>group complex tasks into sub namespaces</li>
 <li>task as verb</li>
 <li>introduce new role for your tasks</li>
-<li>describe your task</li>
+<li>describe each task</li>
 <li>provide configurable variables</li>
 <li>prefix variables with the same name as namespace</li>
 </ul>
@@ -463,21 +495,25 @@ end</code></pre>
 <div class="main"><div class="content smaller" ref="caphub/01_slide/10">
 <h1>Recipe example</h1>
 
-<pre class="sh_ruby"><code>set :xvfb_display,         ":1"
+<pre class="sh_ruby"><code># recipe configuration
+set :xvfb_display,         ":1"
 set :xvfb_screen,          "0"
 set :xvfb_resolution,      "1280x800x24"
 
+# recipe tasks
 namespace :xvfb do
   desc "Start XVFB service"
   task :start, :roles =&gt; :xvfb do
-    run "Xvfb #{xvfb_display} \
-         -screen #{xvfb_screen} #{xvfb_resolution} &amp;"
+    command = "Xvfb #{xvfb_display} "
+    command &lt;&lt; " -screen #{xvfb_screen} #{xvfb_resolution} &amp;"
+    run command
   end
 
   desc "Stop XVFB service"
   task :stop, :roles =&gt; :xvfb do
-    run "kill $(ps ax|grep '[X]vfb #{xvfb_display}' | \
-        head -1 |awk '{ print $1}')"
+    command = "kill $(ps ax|grep '[X]vfb #{xvfb_display}'"
+    command &lt;&lt; " | head -1 |awk '{ print $1}')"
+    run command
   end
 end</code></pre>
 </div>
@@ -489,15 +525,13 @@ end</code></pre>
   </div>
 </div>
 <div class="main"><div class="content small" ref="caphub/01_slide/11">
-<h1>Task invocation</h1>
+<h1>Invocation</h1>
 
-<pre><code>$ cap NAMESPACE:CONFIGURATION \
-      NAMESPACE:RECIPE1 \
-      NAMESPACE:RECIPE2 \
-      ...
-</code></pre>
+<p>Synopsis</p>
 
-<p/>
+<pre class="sh_sh"><code>$ cap CONFIGURATION RECIPE1 [RECIPE2 ...] </code></pre>
+
+<p>Example</p>
 
 <pre><code>$ cap blog:qa unicorn:reload resque:reload
 </code></pre>
