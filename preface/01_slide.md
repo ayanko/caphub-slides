@@ -36,18 +36,6 @@
 
 ## Application does NOT care about deployment.
 
-
-!SLIDE
-
-# Solution?
-
-!SLIDE small
-
-# Separate deployment repo
-
-* It's not hard to create new repo
-* Deployment code completely isolated
-
 !SLIDE bullets
 
 # SOA
@@ -60,6 +48,18 @@
 * ...
 
 ## And a lot of deployment rules are the same.
+
+!SLIDE
+
+# Solution?
+
+!SLIDE small
+
+# Separate deployment repo
+
+* It's not hard to create new repo
+* Deployment code completely isolated
+
 
 !SLIDE
 # How to share deployment?

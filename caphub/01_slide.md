@@ -91,10 +91,22 @@ $ cap api:production deploy
 </div>
 
 !SLIDE small
-# Layout
+# Invocation
+
+Synopsis
+
+    @@@ sh
+    $ cap CONFIGURATION RECIPE1 [RECIPE2 ...] 
+
+Example
+
+    $ cap blog:qa unicorn:reload resque:reload
+
+!SLIDE small
+# Layout design
 <div class="two-column-container">
   <pre class="sh_ruby sh_sourceCode two-column left">
-# Layout per application
+# Layout per application/project
 .
 ├── config
 │   ├── deploy
@@ -111,7 +123,7 @@ $ cap api:production deploy
 └── Gemfile
   </pre>
   <pre class="sh_ruby sh_sourceCode two-column right">
-# Layout per environment
+# Layout per environment/stage
 .
 ├── config
 │   ├── deploy
@@ -169,14 +181,3 @@ $ cap production:wiki deploy
     set :branch, 'development'
     server 'blog-qa.example.com', :app, :db, :web
 
-!SLIDE small
-# Invocation
-
-Synopsis
-
-    @@@ sh
-    $ cap CONFIGURATION RECIPE1 [RECIPE2 ...] 
-
-Example
-
-    $ cap blog:qa unicorn:reload resque:reload
