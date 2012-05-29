@@ -447,23 +447,27 @@ $ cap qa:wiki deploy
 <h1>Configuration examples</h1>
 
 <pre class="sh_ruby"><code># config/deploy/blog.rb
-set :xvfb_display,         ":99"
-set :xvfb_resolution,      "800x600x24"
-set :repository,  "git://github.com/me/blog.git"</code></pre>
+set :scm, :git
+set :branch, 'master'</code></pre>
+
+<p/>
+
+<pre class="sh_ruby"><code># config/deploy/blog.rb
+set :repository,  'git://github.com/me/blog.git'</code></pre>
 
 <p/>
 
 <pre class="sh_ruby"><code># config/deploy/blog/production.rb
 set :rails_env,  'production'
-set :branch, 'master'
-server 'wiki.example.com', :app, :db, :web, :xvfb</code></pre>
+server 'blog.example.com', :app, :web
+server 'db.example.com', :db</code></pre>
 
 <p/>
 
 <pre class="sh_ruby"><code># config/deploy/blog/qa.rb
 set :rails_env, 'qa'
 set :branch, 'development'
-server 'wiki-qa.example.com', :app, :db, :web, :xvfb</code></pre>
+server 'blog-qa.example.com', :app, :db, :web</code></pre>
 </div>
 <div>
 </div>
@@ -496,9 +500,9 @@ server 'wiki-qa.example.com', :app, :db, :web, :xvfb</code></pre>
 <h1>Recipe example</h1>
 
 <pre class="sh_ruby"><code># recipe configuration
-set :xvfb_display,         ":1"
-set :xvfb_screen,          "0"
-set :xvfb_resolution,      "1280x800x24"
+set :xvfb_display,         ':1'
+set :xvfb_screen,          '0'
+set :xvfb_resolution,      '1280x800x24'
 
 # recipe tasks
 namespace :xvfb do
