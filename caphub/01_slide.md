@@ -159,7 +159,6 @@ $ cap production:wiki deploy
 
     @@@ ruby
     # config/deploy/blog/production.rb
-    set :rails_env,  'production'
     server 'blog.example.com', :app, :web
     server 'db.example.com', :db
 
@@ -167,7 +166,6 @@ $ cap production:wiki deploy
 
     @@@ ruby
     # config/deploy/blog/qa.rb
-    set :rails_env, 'qa'
     set :branch, 'development'
     server 'blog-qa.example.com', :app, :db, :web
 
