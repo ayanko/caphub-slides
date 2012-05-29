@@ -146,17 +146,22 @@ $ cap qa:wiki deploy
 
     @@@ ruby
     # config/deploy/blog.rb
-    set :xvfb_display,         ":99"
-    set :xvfb_resolution,      "800x600x24"
-    set :repository,  "git://github.com/me/blog.git"
+    set :scm, :git
+    set :branch, 'master'
+
+&nbsp;
+
+    @@@ ruby
+    # config/deploy/blog.rb
+    set :repository,  'git://github.com/me/blog.git'
 
 &nbsp;
 
     @@@ ruby
     # config/deploy/blog/production.rb
     set :rails_env,  'production'
-    set :branch, 'master'
-    server 'wiki.example.com', :app, :db, :web, :xvfb
+    server 'blog.example.com', :app, :web
+    server 'db.example.com', :db
 
 &nbsp;
 
@@ -164,7 +169,7 @@ $ cap qa:wiki deploy
     # config/deploy/blog/qa.rb
     set :rails_env, 'qa'
     set :branch, 'development'
-    server 'wiki-qa.example.com', :app, :db, :web, :xvfb
+    server 'blog-qa.example.com', :app, :db, :web
 
 !SLIDE small
 # Recipe
@@ -182,9 +187,9 @@ $ cap qa:wiki deploy
 
     @@@ ruby
     # recipe configuration
-    set :xvfb_display,         ":1"
-    set :xvfb_screen,          "0"
-    set :xvfb_resolution,      "1280x800x24"
+    set :xvfb_display,         ':1'
+    set :xvfb_screen,          '0'
+    set :xvfb_resolution,      '1280x800x24'
 
     # recipe tasks
     namespace :xvfb do
