@@ -1,8 +1,8 @@
 !SLIDE 
-# CapHub
 
+![CapHub Logo](../images/caphub-logo.png)
 
-Multiple capistrano _configurations_ and _recipes_ in one place.
+## Multiple capistrano <br />configurations and recipes <br /> in a single place
 
 !SLIDE small
 # Concept

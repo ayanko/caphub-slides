@@ -2,7 +2,7 @@
 
 ![Capistrano logo](../images/capistrano.png)
 
-* `capify .`
+* `$ capify .`
 * Basic rails recipes aboard
 
 !SLIDE small
@@ -43,4 +43,5 @@
 * hard maintenance
 
 !SLIDE
+
 # Solution?
