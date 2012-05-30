@@ -44,3 +44,10 @@ body, .slide {
   color: #DA131A;
 }
 
+#preso pre.level1 {
+  margin-left:120px;
+}
+
+#preso pre.level2 {
+  margin-left:180px;
+}

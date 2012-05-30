@@ -125,8 +125,7 @@
 <p><img src="./file/preface/../images/capistrano.png" width="328" height="130" alt="Capistrano logo"/>
 
 <ul>
-<li>Easy Install</li>
-<li><code>capify .</code></li>
+<li><code>$ capify .</code></li>
 <li>Basic rails recipes aboard</li>
 </ul>
 </p>
@@ -137,18 +136,8 @@
     <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
   </div>
 </div>
-<div class="main"><div class="content" ref="preface/01_slide/2">
-<h1>But</h1>
-</div>
-<div>
-</div>
-</div></div><div class="slide" data-transition="none"><div class="header">
-  <div class="status">
-    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
-  </div>
-</div>
-<div class="main"><div class="content small" ref="preface/01_slide/3">
-<h2>Deployment in application repo</h2>
+<div class="main"><div class="content small" ref="preface/01_slide/2">
+<h1>Deployment stuff</h1>
 
 <h3>Gemfile</h3>
 
@@ -171,27 +160,7 @@ end</code></pre>
     <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
   </div>
 </div>
-<div class="main"><div class="content" ref="preface/01_slide/4">
-<h1>Is this a problem?</h1>
-</div>
-<div>
-</div>
-</div></div><div class="slide" data-transition="none"><div class="header">
-  <div class="status">
-    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
-  </div>
-</div>
-<div class="main"><div class="content" ref="preface/01_slide/5">
-<h2>Application does NOT care about deployment.</h2>
-</div>
-<div>
-</div>
-</div></div><div class="slide" data-transition="none"><div class="header">
-  <div class="status">
-    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
-  </div>
-</div>
-<div class="main"><div class="content bullets" ref="preface/01_slide/6">
+<div class="main"><div class="content bullets" ref="preface/01_slide/3">
 <h1>SOA</h1>
 
 <h2>Project consists of multiple applications:</h2>
@@ -202,8 +171,6 @@ end</code></pre>
 <li>api</li>
 <li>...</li>
 </ul>
-
-<h2>And a lot of deployment rules are the same.</h2>
 </div>
 <div>
 </div>
@@ -212,22 +179,13 @@ end</code></pre>
     <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
   </div>
 </div>
-<div class="main"><div class="content" ref="preface/01_slide/7">
-<h1>Solution?</h1>
-</div>
-<div>
-</div>
-</div></div><div class="slide" data-transition="none"><div class="header">
-  <div class="status">
-    <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
-  </div>
-</div>
-<div class="main"><div class="content small" ref="preface/01_slide/8">
-<h1>Separate deployment repo</h1>
+<div class="main"><div class="content bullets incremental" ref="preface/01_slide/4">
+<h1>Issues</h1>
 
 <ul>
-<li>It's not hard to create new repo</li>
-<li>Deployment code completely isolated</li>
+<li>copy-n-paste configurations and recipes</li>
+<li>application and deployment code mix</li>
+<li>hard maintenance</li>
 </ul>
 </div>
 <div>
@@ -237,8 +195,8 @@ end</code></pre>
     <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
   </div>
 </div>
-<div class="main"><div class="content" ref="preface/01_slide/9">
-<h1>How to share deployment?</h1>
+<div class="main"><div class="content" ref="preface/01_slide/5">
+<h1>Solution?</h1>
 </div>
 <div>
 </div>
@@ -248,13 +206,13 @@ end</code></pre>
   </div>
 </div>
 <div class="main"><div class="content" ref="caphub/01_slide/1">
-<h1>CapHub</h1>
+<p><img src="./file/caphub/../images/caphub-logo.png" width="613" height="239" alt="CapHub Logo"/>
 
-<p>Multiple capistrano <em>configurations</em> and <em>recipes</em> in one place.</p>
-</div>
+<h2>Multiple capistrano <br/>configurations and recipes <br/> in a single place</h2>
+</p>
 <div>
 </div>
-</div></div><div class="slide" data-transition="none"><div class="header">
+</div></div></div><div class="slide" data-transition="none"><div class="header">
   <div class="status">
     <a href="http://ayanko.github.com/caphub-slides">ayanko.github.com/caphub-slides</a>
   </div>
@@ -263,12 +221,13 @@ end</code></pre>
 <h1>Concept</h1>
 
 <ul>
+<li>single deployment repository</li>
 <li>DRY</li>
 <li>segregate <em>application</em> and <em>deployment</em></li>
 <li>segregate <em>configurations</em> and <em>recipes</em></li>
 <li>no capistrano hacks</li>
 <li>multi configuration support</li>
-<li>developer is NOT forced to use special layout</li>
+<li>flexible layout</li>
 </ul>
 </div>
 <div>
@@ -409,7 +368,7 @@ $ cap api:production deploy
   </div>
 </div>
 <div class="main"><div class="content small" ref="caphub/01_slide/8">
-<h1>Layout design</h1>
+<h1>Layout examples</h1>
 
 <div class="two-column-container">
   <pre class="sh_ruby sh_sourceCode two-column left">
@@ -469,11 +428,12 @@ $ cap production:wiki deploy
   </div>
 </div>
 <div class="main"><div class="content smaller" ref="caphub/01_slide/9">
-<h1>Inherited configurations</h1>
+<h1>Inherited configuration example</h1>
+
+<p><br/></p>
 
 <pre class="sh_ruby"><code># config/deploy.rb
-set :scm, :git
-set :branch, 'master'</code></pre>
+set :scm, :git</code></pre>
 
 <p/>
 
@@ -483,14 +443,12 @@ set :repository,  'git://github.com/me/blog.git'</code></pre>
 <p/>
 
 <pre class="sh_ruby"><code># config/deploy/blog/production.rb
-server 'blog.example.com', :app, :web
-server 'db.example.com', :db</code></pre>
+server 'blog.example.com', :app</code></pre>
 
 <p/>
 
 <pre class="sh_ruby"><code># config/deploy/blog/qa.rb
-set :branch, 'development'
-server 'blog-qa.example.com', :app, :db, :web</code></pre>
+server 'blog-qa.example.com', :app</code></pre>
 </div>
 <div>
 </div>
