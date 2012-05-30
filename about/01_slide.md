@@ -1,5 +1,5 @@
 !SLIDE
-# Andriy Yanko
+# Andriy Yank&#243;
 
 [ayanko.github.com](http://ayanko.github.com)
 
