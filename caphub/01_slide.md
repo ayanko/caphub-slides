@@ -7,12 +7,13 @@ Multiple capistrano _configurations_ and _recipes_ in one place.
 !SLIDE small
 # Concept
 
+* single deployment repository
 * DRY
 * segregate *application* and *deployment*
 * segregate *configurations* and *recipes*
 * no capistrano hacks
 * multi configuration support
-* developer is NOT forced to use special layout
+* flexible layout
 
 !SLIDE bullets incremental
 # Benefits
@@ -108,7 +109,7 @@ Example
     $ cap blog:qa unicorn:reload resque:reload
 
 !SLIDE small
-# Layout design
+# Layout examples
 <div class="two-column-container">
   <pre class="sh_ruby sh_sourceCode two-column left">
 # Layout per application/project
@@ -159,12 +160,13 @@ $ cap production:wiki deploy
   </pre>
 </div>
 !SLIDE smaller
-# Inherited configurations
+# Inherited configuration example
+
+<br />
 
     @@@ ruby
     # config/deploy.rb
     set :scm, :git
-    set :branch, 'master'
 
 &nbsp;
 
@@ -176,13 +178,11 @@ $ cap production:wiki deploy
 
     @@@ ruby
     # config/deploy/blog/production.rb
-    server 'blog.example.com', :app, :web
-    server 'db.example.com', :db
+    server 'blog.example.com', :app
 
 &nbsp;
 
     @@@ ruby
     # config/deploy/blog/qa.rb
-    set :branch, 'development'
-    server 'blog-qa.example.com', :app, :db, :web
+    server 'blog-qa.example.com', :app
 

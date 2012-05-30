@@ -2,15 +2,11 @@
 
 ![Capistrano logo](../images/capistrano.png)
 
-* Easy Install
 * `capify .`
 * Basic rails recipes aboard
 
-!SLIDE
-# But
-
 !SLIDE small
-## Deployment in application repo
+# Deployment stuff
 
 ### Gemfile
 
@@ -28,14 +24,6 @@
     ├── production.rb
     └── staging.rb
 
-!SLIDE
-
-# Is this a problem?
-
-!SLIDE
-
-## Application does NOT care about deployment.
-
 !SLIDE bullets
 
 # SOA
@@ -47,19 +35,12 @@
 * api
 * ...
 
-## And a lot of deployment rules are the same.
+!SLIDE bullets incremental
+# Issues
+
+* copy-n-paste configurations and recipes
+* application and deployment code mix
+* hard maintenance
 
 !SLIDE
-
 # Solution?
-
-!SLIDE small
-
-# Separate deployment repo
-
-* It's not hard to create new repo
-* Deployment code completely isolated
-
-
-!SLIDE
-# How to share deployment?
