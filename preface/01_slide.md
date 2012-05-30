@@ -43,5 +43,6 @@
 * hard maintenance
 
 !SLIDE
-
 # Solution?
+
+![Capistrano islands](../images/capistrano_islands.png)
